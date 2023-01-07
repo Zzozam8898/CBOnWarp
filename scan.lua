@@ -24,8 +24,12 @@ function f.saveData()
     f:close()
 end
 
+function f.getItem(item)
+    return data[item.id..":"..item.dmg]
+end
+
 function f.isExists(item)
-    if data[item.id..":"..item.dmg] ~= nil then
+    if f.getItem(item) ~= nil then
         return true
     else
         return false
@@ -57,3 +61,5 @@ f.scan()
 print('['..os.date().. '] '.."Scan completed")
 f.saveData()
 print('['..os.date().. '] '.."Saved.")
+
+return f

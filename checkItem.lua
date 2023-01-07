@@ -45,7 +45,7 @@ function f.convert(input)
 end
 
 function f.write(item)
-    local f = io.open("tasks.lua","a+")
+    local f = io.open("tasks.lua","a")
     f.write(item.id..":"..item.dmg.."\n")
     f.close()
 end
