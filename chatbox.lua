@@ -28,7 +28,7 @@ function compare(raw_id)
 end
 
 function exists(item)
-    chat_box.send("Ищи в разделе "..item.mod_id)
+    chat_box.say("Ищи в разделе "..item.mod_id)
 end
 
 function catchCommand(raw_msg)
