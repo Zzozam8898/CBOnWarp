@@ -15,9 +15,9 @@ local repoURL= "https://raw.githubusercontent.com/Zzozam8898/CBOnWarp/master/"
 
 print('Loading web assets...')
 local files = {
-  ['main.lua'] = repoURL+'chatbox.lua',
-  ['scan.lua'] = repoURL+'scan.lua',
-  ['checkItem.lua'] = repoURL+'checkItem.lua',
+  ['main.lua'] = repoURL..'chatbox.lua',
+  ['scan.lua'] = repoURL..'scan.lua',
+  ['checkItem.lua'] = repoURL..'checkItem.lua',
 }
 
 print('Downloading files...')
