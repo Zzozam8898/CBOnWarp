@@ -11,6 +11,17 @@ function string.starts(String,Start)
     return string.sub(String,1,string.len(Start))==Start
  end
 
+function mysplit (inputstr, sep)
+  if sep == nil then
+          sep = "%s"
+  end
+  local t={}
+  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+          table.insert(t, str)
+  end
+  return t
+end
+
 -- Конвертирует строку в массив
 function stringToArray(text)
   t = {}
@@ -31,15 +42,12 @@ function exists(item)
     chat_box.say("Ищи в разделе "..item.mod_id)
 end
 
-function catchCommand(raw_msg)
+function catchCommand(nick, raw_msg, type, pos)
     if string.starts(raw_msg, commandPrefix) then
-        words = {}
-        for word in string.gmatch(raw_msg, "[^%s]*") do
-            if word ~= " " and word ~= "" then
-                table.insert(words, word)
-            end
-        end
+        words = mysplit(raw_msg," ")
+
         if words[2]~= nil then
+            print(words[2], nick, raw_msg, type, pos)
             compare(words[2])
         end
     end
@@ -88,13 +96,15 @@ print("Ожидание первого сообщения...")
 local _, add, nick, msg = event.pull("chat_message") 
 term.clear()
 local type, pos = isGlobal(msg)
-message(nick, msg, type, pos)
+catchCommand(nick, msg, type, pos)
 
 
 while true do
 
   local _, add, nick, msg = event.pull("chat_message") 
+  print(nick, msg, type, pos)
   local type, pos = isGlobal(msg)
-  message(nick, msg, type, pos)
+  catchCommand(nick, msg, type, pos)
 
 end
+

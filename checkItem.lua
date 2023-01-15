@@ -28,9 +28,9 @@ end
 
 function f.convert(input)
     local item = nil
-    local splitter = getSplitter(input)
+    local splitter = f.getSplitter(input)
     if splitter then
-        local raw_item = mysplit(input,splitter)
+        local raw_item = f.mysplit(input,splitter)
         item = {
             id=itemIds[tonumber(raw_item[1])],
             dmg=tonumber(raw_item[2])
@@ -45,9 +45,9 @@ function f.convert(input)
 end
 
 function f.write(item)
-    local f = io.open("tasks.lua","a")
-    f.write(item.id..":"..item.dmg.."\n")
-    f.close()
+    local file = io.open("tasks.lua","a")
+    file:write(item.id..":"..item.dmg.."\n")
+    file:close()
 end
 
 return f
